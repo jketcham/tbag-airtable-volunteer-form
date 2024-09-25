@@ -1,6 +1,12 @@
 <script>
 	import { ListBox, ListBoxItem, ProgressBar } from '@skeletonlabs/skeleton';
-	import { faBicycle, faThumbsUp, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+	import {
+		faBicycle,
+		faThumbsUp,
+		faCircleXmark,
+		faSquare,
+		faSquareCheck
+	} from '@fortawesome/free-solid-svg-icons';
 	import { FontAwesomeIcon } from '@fortawesome/svelte-fontawesome';
 	import { insertAirtableRecord } from '$lib/airtable.js';
 
@@ -145,12 +151,19 @@
 									class="!rounded-none text-lg"
 									hover="hover:variant-ghost-primary"
 								>
-									<svelte:fragment slot="lead"
-										>{#if event.selectedShifts.includes(shift.id)}<FontAwesomeIcon
-												icon={faThumbsUp}
-											/>{:else}<FontAwesomeIcon icon={faBicycle} />{/if}</svelte:fragment
-									>
+									<svelte:fragment slot="lead">
+										{#if event.selectedShifts.includes(shift.id)}
+											<FontAwesomeIcon icon={faSquareCheck} />
+										{:else}
+											<FontAwesomeIcon icon={faSquare} />
+										{/if}
+									</svelte:fragment>
 									{shift.fields.Name}
+									{#if event.selectedShifts.includes(shift.id)}
+										<FontAwesomeIcon icon={faThumbsUp} class="ml-2" />
+									{:else}
+										<FontAwesomeIcon icon={faBicycle} class="ml-2" />
+									{/if}
 								</ListBoxItem>
 							{/each}
 						</ListBox>
@@ -217,7 +230,7 @@
 			{/if}
 
 			{#if activeEvents.filter((item) => item.selectedShifts.length > 0).length > 0}
-				<h4 class="h4 mt-4 mb-2">Selected Shifts</h4>
+				<h4 class="h4 mt-4 mb-2">Selected Events</h4>
 				{#each activeEvents as event}
 					{#if event.selectedShifts.length > 0}
 						<div class="card py-2 px-4 mb-4 variant-ghost-primary">

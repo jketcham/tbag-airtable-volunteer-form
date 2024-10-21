@@ -143,7 +143,7 @@
 							Choose How You Can Assist <span class="text-sm">(select all that apply)</span>
 						</h5>
 						<ListBox multiple class="variant-ghost-tertiary !rounded-none">
-							{#each allShifts.filter((shift) => shift.fields.Event.includes(event.id)) as shift}
+							{#each allShifts.filter((shift) => shift.fields.Event?.includes(event.id)) as shift}
 								<ListBoxItem
 									bind:group={event.selectedShifts}
 									name={event.fields.Name}

@@ -96,10 +96,10 @@
 			<p class="mb-4">
 				Welcome to our Volunteer Sign-Up page — where you help make the community more
 				bike-friendly! Pick your event(s), drop your name, email, and phone number below, and and
-				let’s start a positive chain reaction!
+				let's start a positive chain reaction!
 			</p>
 			<p class="mb-4">
-				We’ll send a follow-up email 10 days before the event, along with reminders as the big day
+				We'll send a follow-up email 10 days before the event, along with reminders as the big day
 				pedals closer. We can't wait to ride with you and make these events wheelie great!
 			</p>
 			<p>
@@ -153,16 +153,28 @@
 								>
 									<svelte:fragment slot="lead">
 										{#if event.selectedShifts.includes(shift.id)}
-											<FontAwesomeIcon icon={faSquareCheck} />
+											<FontAwesomeIcon
+												icon={faSquareCheck}
+												class="w-4 h-4 inline-block align-middle leading-none"
+											/>
 										{:else}
-											<FontAwesomeIcon icon={faSquare} />
+											<FontAwesomeIcon
+												icon={faSquare}
+												class="w-4 h-4 inline-block align-middle leading-none"
+											/>
 										{/if}
 									</svelte:fragment>
 									{shift.fields.Name}
 									{#if event.selectedShifts.includes(shift.id)}
-										<FontAwesomeIcon icon={faThumbsUp} class="ml-2" />
+										<FontAwesomeIcon
+											icon={faThumbsUp}
+											class="ml-2 w-4 h-4 inline-block align-middle leading-none"
+										/>
 									{:else}
-										<FontAwesomeIcon icon={faBicycle} class="ml-2" />
+										<FontAwesomeIcon
+											icon={faBicycle}
+											class="ml-2 w-4 h-4 inline-block align-middle leading-none"
+										/>
 									{/if}
 								</ListBoxItem>
 							{/each}
@@ -251,7 +263,10 @@
 													);
 												}}
 											>
-												<FontAwesomeIcon icon={faCircleXmark} class="" />
+												<FontAwesomeIcon
+													icon={faCircleXmark}
+													class="w-4 h-4 inline-block align-middle leading-none"
+												/>
 											</button>
 											<strong class=""
 												>{allShifts.find((item) => item.id === shift).fields.Name}</strong

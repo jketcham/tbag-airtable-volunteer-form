@@ -1,7 +1,7 @@
 const baseId = import.meta.env.VITE_AIRTABLE_BASE_ID;
 const airtablePAT = import.meta.env.VITE_AIRTABLE_PAT;
 
-export async function fetchAirtableData(tableId) {
+export async function fetchAirtableData(tableId, fetch) {
 	const url = `https://api.airtable.com/v0/${baseId}/${tableId}`;
 
 	try {

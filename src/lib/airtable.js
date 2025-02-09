@@ -1,6 +1,5 @@
-const baseId = 'app7gjddwTZzj2Kti';
-const airtablePAT =
-	'patFI0LLaErSvAWQr.327ca3cbd84a72ee95fef08eca50a78c19c043da66339cabaeca87254675e9a5';
+const baseId = import.meta.env.VITE_AIRTABLE_BASE_ID;
+const airtablePAT = import.meta.env.VITE_AIRTABLE_PAT;
 
 export async function fetchAirtableData(tableId) {
 	const url = `https://api.airtable.com/v0/${baseId}/${tableId}`;

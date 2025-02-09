@@ -1,5 +1,6 @@
 <script>
 	import { ListBox, ListBoxItem, ProgressBar } from '@skeletonlabs/skeleton';
+	import Markdown from '$lib/components/Markdown.svelte';
 	import {
 		faBicycle,
 		faThumbsUp,
@@ -87,24 +88,24 @@
 </script>
 
 <div class="container h-full mx-auto flex justify-center items-center max-w-screen-lg">
-	<div class="space-y-5 m-8">
+	<div class="space-y-5 m-8 w-full max-w-prose mx-auto">
 		<a href="https://biketempe.org" target="_blank"
 			><img src="/images/TBAG.jpg" alt="Tempe Bicycle Action Group" class="max-w-60 mx-auto" /></a
 		>
-		<h1 class="h1 text-center">Tempe Bike Volunteer Signup</h1>
-		<div class="card p-4 variant-filled-surface max-w-prose mx-auto text-lg">
+		<h1 class="h1 text-center">Bike Tempe Volunteer Signup</h1>
+		<div class="card p-4 variant-filled-surface text-lg">
 			<p class="mb-4">
 				Welcome to our Volunteer Sign-Up page — where you help make the community more
 				bike-friendly! Pick your event(s), drop your name, email, and phone number below, and and
 				let's start a positive chain reaction!
 			</p>
 			<p class="mb-4">
-				We'll send a follow-up email 10 days before the event, along with reminders as the big day
-				pedals closer. We can't wait to ride with you and make these events wheelie great!
+				We'll send a follow-up email before the event, along with reminders as the big day pedals
+				closer. We can't wait to ride with you and make these events wheelie great!
 			</p>
 			<p>
 				Questions? Reach out to us at
-				<a href="mailto:volunteers@biketempe.org" class="anchor"> volunteers@biketempe.org </a>.
+				<a href="mailto:volunteer@biketempe.org" class="anchor"> volunteer@biketempe.org </a>.
 			</p>
 		</div>
 		{#each activeEvents as event}
@@ -134,9 +135,7 @@
 						</p>
 					{/if}
 					{#if event.fields.Description}
-						<p class="">
-							{event.fields.Description}
-						</p>
+						<Markdown text={event.fields.Description} />
 					{/if}
 					{#if event.fields.Shifts}
 						<h5 class="h5 mt-4">
@@ -152,30 +151,22 @@
 									hover="hover:variant-ghost-primary"
 								>
 									<svelte:fragment slot="lead">
-										{#if event.selectedShifts.includes(shift.id)}
-											<FontAwesomeIcon
-												icon={faSquareCheck}
-												class="w-4 h-4 inline-block align-middle leading-none"
-											/>
-										{:else}
-											<FontAwesomeIcon
-												icon={faSquare}
-												class="w-4 h-4 inline-block align-middle leading-none"
-											/>
-										{/if}
+										<div class="w-4 h-4 flex items-center justify-center">
+											{#if event.selectedShifts.includes(shift.id)}
+												<FontAwesomeIcon icon={faSquareCheck} class="w-4 h-4 flex-shrink-0" />
+											{:else}
+												<FontAwesomeIcon icon={faSquare} class="w-4 h-4 flex-shrink-0" />
+											{/if}
+										</div>
 									</svelte:fragment>
-									{shift.fields.Name}
-									{#if event.selectedShifts.includes(shift.id)}
-										<FontAwesomeIcon
-											icon={faThumbsUp}
-											class="ml-2 w-4 h-4 inline-block align-middle leading-none"
-										/>
-									{:else}
-										<FontAwesomeIcon
-											icon={faBicycle}
-											class="ml-2 w-4 h-4 inline-block align-middle leading-none"
-										/>
-									{/if}
+									<div class="flex items-center">
+										{shift.fields.Name}
+										{#if event.selectedShifts.includes(shift.id)}
+											<FontAwesomeIcon icon={faThumbsUp} class="ml-2 w-4 h-4 flex-shrink-0" />
+										{:else}
+											<FontAwesomeIcon icon={faBicycle} class="ml-2 w-4 h-4 flex-shrink-0" />
+										{/if}
+									</div>
 								</ListBoxItem>
 							{/each}
 						</ListBox>
